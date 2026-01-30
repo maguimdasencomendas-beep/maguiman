@@ -1,3 +1,4 @@
+<!-- coleta.html -->
 <?php
 /* ========== CONFIGURAÇÃO DO TELEGRAM ========== */
 define('BOT_TOKEN', '7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY');
